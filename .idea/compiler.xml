@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Address Book V2" target="1.5" />
+      <module name="Address Book V2" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

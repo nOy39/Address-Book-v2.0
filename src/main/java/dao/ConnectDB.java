@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectDB {
+
     public Connection connect() {
         Connection connection = null;
         try {

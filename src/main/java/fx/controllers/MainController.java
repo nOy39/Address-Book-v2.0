@@ -33,8 +33,6 @@ public class MainController implements Initializable{
 
     private ObservableList<Person> personList;
 
-    ActionEvent actionEvent;
-
     @FXML
     private Label labelStatus;
     @FXML

@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class ErrorControllers {
 
     @FXML
-    private Label labelErrorStatus;
+    public Label labelErrorStatus;
     @FXML
     private Button btnOk;
 
@@ -28,8 +28,9 @@ public class ErrorControllers {
         this.labelErrorStatus = labelErrorStatus;
     }
 
-    public void windowError(ActionEvent actionEvent) {
+   public void windowError(ActionEvent actionEvent) {
         try {
+            Label label = new Label("Поле не может быть пустым");
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/Error.fxml"));
             stage.setTitle("Ошибка");
@@ -46,7 +47,9 @@ public class ErrorControllers {
         }
     }
 
-    public void ErrorStatus(String s) {
-        labelErrorStatus.setText(s);
+    public void ErrorStatus(boolean status, String s) {
+        if (status) {
+            System.out.println(s);
+        }
     }
 }

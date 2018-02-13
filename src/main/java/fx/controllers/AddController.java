@@ -37,7 +37,16 @@ public class AddController {
     }
 
     public void handleSave(ActionEvent actionEvent) {
-        base.addPerson(fieldFirstName.getText(),fieldLastName.getText(),fieldPhone.getText(),fieldEmail.getText());
+        ErrorControllers ec = new ErrorControllers();
+        boolean error = false;
+        if (fieldFirstName.getText().length() < 3 && fieldPhone.getText().length() < 5) {
+            error = true;
+            ec.ErrorStatus(error,"Поле ИМЯ/ТЕЛЕФОН не может быть пустым!");
+            ec.windowError(actionEvent);
+        } else {
+            base.addPerson(fieldFirstName.getText(), fieldLastName.getText(), fieldPhone.getText(), fieldEmail.getText());
+            handleClear(actionEvent);
+        }
     }
 
     public void handleCancel(ActionEvent actionEvent) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
@@ -37,10 +38,10 @@
       </MenuBar>
    </top>
    <left>
-      <TableView fx:id="table" prefHeight="575.0" prefWidth="278.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="table" prefHeight="389.0" prefWidth="327.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="columnFirstName" prefWidth="130.0" text="Имя" />
-          <TableColumn fx:id="columnLastName" prefWidth="147.0" text="Фамилия" />
+          <TableColumn fx:id="columnFirstName" prefWidth="154.0" text="Имя" />
+          <TableColumn fx:id="columnLastName" prefWidth="154.0" text="Фамилия" />
         </columns>
       </TableView>
    </left>
@@ -80,17 +81,25 @@
       </AnchorPane>
    </center>
    <bottom>
-      <AnchorPane prefHeight="43.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+      <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <ButtonBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+            <ButtonBar AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
                <buttons>
-                  <Button fx:id="btnAdd" mnemonicParsing="false" text="Добавить" />
-                  <Button fx:id="btnRefresh" mnemonicParsing="false" text="Обновить" />
-                  <Button fx:id="btnEdit" mnemonicParsing="false" text="Изменить" />
-                  <Button fx:id="btnExit" mnemonicParsing="false" onAction="#handleExit" prefHeight="31.0" prefWidth="106.0" text="Выход" />
+                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#handleAdd" onMouseEntered="#showAddTips" onMouseExited="#hideTips" prefWidth="100.0" text="Добавить" />
+                  <Button fx:id="btnRefresh" mnemonicParsing="false" onAction="#handleRefresh" onMouseEntered="#showRefreshTips" onMouseExited="#hideTips" prefWidth="100.0" text="Обновить" />
+                  <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#handleEdit" onMouseEntered="#showEditTips" onMouseExited="#hideTips" prefWidth="100.0" text="Изменить" />
+                  <Button fx:id="btnExit" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleExit" onMouseEntered="#showExitTips" onMouseExited="#hideTips" prefHeight="31.0" prefWidth="100.0" text="Выход">
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </Button>
                </buttons>
             </ButtonBar>
+            <Label fx:id="labelStatus" layoutX="27.0" layoutY="11.0" prefHeight="29.0" prefWidth="262.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
          </children>
+         <BorderPane.margin>
+            <Insets right="5.0" />
+         </BorderPane.margin>
       </AnchorPane>
    </bottom>
 </BorderPane>

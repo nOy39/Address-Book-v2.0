@@ -1,4 +1,17 @@
 package dao;
 
-public class Base {
+public class Base implements CRUD {
+
+
+    public void add() {
+
+    }
+
+    public void update() {
+
+    }
+
+    public void delete() {
+
+    }
 }

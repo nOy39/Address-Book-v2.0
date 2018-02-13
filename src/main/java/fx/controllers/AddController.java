@@ -39,7 +39,7 @@ public class AddController {
     public void handleSave(ActionEvent actionEvent) {
         ErrorControllers ec = new ErrorControllers();
         boolean error = false;
-        if (fieldFirstName.getText().length() < 3 && fieldPhone.getText().length() < 5) {
+        if (fieldFirstName.getText().length() < 3 || fieldPhone.getText().length() < 5) {
             error = true;
             ec.ErrorStatus(error,"Поле ИМЯ/ТЕЛЕФОН не может быть пустым!");
             ec.windowError(actionEvent);

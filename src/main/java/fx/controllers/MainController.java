@@ -110,6 +110,10 @@ public class MainController implements Initializable{
 
     }
 
+    public void handleDelete(ActionEvent actionEvent) {
+        inProgress(actionEvent);
+    }
+
     //TODO Сделать редактирование записи
     public void handleEdit(ActionEvent actionEvent) {
         inProgress(actionEvent);

@@ -1,5 +1,6 @@
 package fx.controllers;
 
+import dao.Base;
 import dao.ConnectDB;
 import helpers.Person;
 import javafx.collections.FXCollections;
@@ -29,6 +30,7 @@ import java.util.ResourceBundle;
 
 
 public class MainController implements Initializable{
+
     private ObservableList<Person> personList;
 
     ActionEvent actionEvent;
@@ -62,14 +64,46 @@ public class MainController implements Initializable{
 
     public Connection connection = connectDB.connect();
 
-    //TODO Сделать метод добавления данных в таблицу
+    //TODO Сделать метод добавления данных в таблицу 600*183
     public void handleAdd(ActionEvent actionEvent) {
-        inProgress(actionEvent);
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/add.fxml"));
+            stage.setTitle("Добавить запись");
+            stage.setMinHeight(183);
+            stage.setMinWidth(600);
+            stage.setResizable(false);
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    //TODO Сделать обновление таблицы после добавления
     public void handleRefresh(ActionEvent actionEvent) {
-        inProgress(actionEvent);
+        initialize(null,null);
+    }
+
+    public void refresh() {
+        connectDB.connect();
+        personList = FXCollections.observableArrayList();
+
+        ResultSet rs = null;
+        try {
+            rs = connectDB.connect().createStatement().executeQuery("SELECT * FROM abtabla");
+            while (rs.next()) {
+                personList.add(new Person(rs.getString("id"),
+                        rs.getString("firstname"),
+                        rs.getString("lastname"),
+                        rs.getString("phone"),
+                        rs.getString("email")));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void handleExit() {
@@ -102,22 +136,8 @@ public class MainController implements Initializable{
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        connectDB.connect();
-        personList = FXCollections.observableArrayList();
 
-        ResultSet rs = null;
-        try {
-            rs = connectDB.connect().createStatement().executeQuery("SELECT * FROM abtabla");
-            while (rs.next()) {
-                personList.add(new Person(rs.getString("id"),
-                        rs.getString("firstname"),
-                        rs.getString("lastname"),
-                        rs.getString("phone"),
-                        rs.getString("email")));
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        refresh();
 
         columnFirstName.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
         columnLastName.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));

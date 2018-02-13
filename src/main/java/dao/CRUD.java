@@ -6,4 +6,5 @@ public interface CRUD {
     void update();
 
     void delete();
+
 }

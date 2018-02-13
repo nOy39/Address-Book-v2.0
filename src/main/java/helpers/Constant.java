@@ -8,7 +8,8 @@ public class Constant {
 
     private static final String PASSWORD = "psw1234";
 
-    private static final String ADD_QUERY = "INSERT INTO abtabla (firstname, phone, email, created) VALUES( ?, ?, ?, ?)";
+    private static final String ADD_QUERY = "INSERT INTO abtabla (firstname, lastname, phone, email, created)" +
+            " VALUES( ?, ?, ?, ?, ?)";
 
     public static String getURL() {
         return URL;

@@ -1,14 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.MainController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <TableView fx:id="table" prefHeight="575.0" prefWidth="278.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="columnFirstName" prefWidth="130.0" text="Имя" />
+          <TableColumn fx:id="columnLastName" prefWidth="147.0" text="Фамилия" />
+        </columns>
+      </TableView>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane prefHeight="415.0" prefWidth="421.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label prefHeight="78.0" prefWidth="255.0" text="Имя" />
+                  <Label fx:id="labelFirstName" prefHeight="122.0" prefWidth="370.0" GridPane.columnIndex="1" />
+                  <Label prefHeight="142.0" prefWidth="400.0" text="Фамилия" GridPane.rowIndex="1" />
+                  <Label fx:id="labelLastName" prefHeight="155.0" prefWidth="447.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label prefHeight="161.0" prefWidth="416.0" text="Телефон" GridPane.rowIndex="2" />
+                  <Label fx:id="labelPhone" prefHeight="237.0" prefWidth="528.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label prefHeight="225.0" prefWidth="514.0" text="Email" GridPane.rowIndex="3" />
+                  <Label fx:id="labelEmail" prefHeight="179.0" prefWidth="497.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="43.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+         <children>
+            <ButtonBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+               <buttons>
+                  <Button fx:id="btnAdd" mnemonicParsing="false" text="Добавить" />
+                  <Button fx:id="btnRefresh" mnemonicParsing="false" text="Обновить" />
+                  <Button fx:id="btnEdit" mnemonicParsing="false" text="Изменить" />
+                  <Button fx:id="btnExit" mnemonicParsing="false" onAction="#handleExit" prefHeight="31.0" prefWidth="106.0" text="Выход" />
+               </buttons>
+            </ButtonBar>
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>

@@ -4,13 +4,21 @@ import dao.ConnectDB;
 import helpers.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -21,9 +29,12 @@ import java.util.ResourceBundle;
 
 
 public class MainController implements Initializable{
-
     private ObservableList<Person> personList;
 
+    ActionEvent actionEvent;
+
+    @FXML
+    private Label labelStatus;
     @FXML
     private TableView<Person> table;
     @FXML
@@ -51,12 +62,14 @@ public class MainController implements Initializable{
 
     public Connection connection = connectDB.connect();
 
-    public void handleAdd() {
-
+    //TODO Сделать метод добавления данных в таблицу
+    public void handleAdd(ActionEvent actionEvent) {
+        inProgress(actionEvent);
     }
 
-    public void handleRefresh() {
-
+    //TODO Сделать обновление таблицы после добавления
+    public void handleRefresh(ActionEvent actionEvent) {
+        inProgress(actionEvent);
     }
 
     public void handleExit() {
@@ -65,10 +78,28 @@ public class MainController implements Initializable{
 
     }
 
-    public void handleEdit() {
-
+    //TODO Сделать редактирование записи
+    public void handleEdit(ActionEvent actionEvent) {
+        inProgress(actionEvent);
     }
 
+    public void inProgress(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/progress.fxml"));
+            stage.setTitle("В разработке.");
+            stage.setMinHeight(311);
+            stage.setMinWidth(504);
+            stage.setResizable(false);
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void initialize(URL location, ResourceBundle resources) {
         connectDB.connect();
@@ -98,7 +129,8 @@ public class MainController implements Initializable{
                         -> showPersonDetails(newValue, labelFirstName, labelLastName, labelPhone, labelEmail));
 }
 
-    public void showPersonDetails(Person person, Label labelFirstName, Label labelLastName, Label labelPhone, Label labelEmail) {
+    public void showPersonDetails(Person person, Label labelFirstName,
+                                  Label labelLastName, Label labelPhone, Label labelEmail) {
         if (person != null) {
             labelFirstName.setText(person.getFirstName());
             labelLastName.setText(person.getLastName());
@@ -106,7 +138,42 @@ public class MainController implements Initializable{
             labelEmail.setText(person.getEmail());
         }
     }
+
+
+
+    public void showAddTips(MouseEvent mouseEvent) {
+        labelStatus.setText(btnAdd.getText());
+        }
+
+    /**
+     * Метод hideTips
+     * @param mouseEvent
+     * Убирает подсказку в трее когда мышка сводится с Button
+     */
+    public void hideTips(MouseEvent mouseEvent) {
+        labelStatus.setText("");
     }
+
+    /**
+     * Метод showRefreshTips
+     * @param mouseEvent
+     * отображает подсказу в трее при наведении мышки
+     * на Button btnRefresh
+     */
+    public void showRefreshTips(MouseEvent mouseEvent) {
+        labelStatus.setText(btnRefresh.getText());
+    }
+
+
+    public void showEditTips(MouseEvent mouseEvent) {
+        labelStatus.setText(btnEdit.getText());
+    }
+
+    public void showExitTips(MouseEvent mouseEvent) {
+        labelStatus.setText(btnExit.getText());
+    }
+
+}
 
 
 
